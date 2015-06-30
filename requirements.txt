@@ -1,5 +1,0 @@
-dj-database-url==0.3.0
-Django==1.8.2
-waitress==0.8.9
-whitenoise==2.0.1
-psycopg2==2.5.3
