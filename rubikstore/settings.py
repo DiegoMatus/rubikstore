@@ -77,8 +77,10 @@ WSGI_APPLICATION = 'rubikstore.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'rubikstore_db',
+        'USERNAME': 'root',
+        'PASSWORD': '12345',
     }
 }
 
@@ -102,7 +104,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Heroku's config. 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'rubikstore/static'),
+)
+
+############## Heroku's config. ##############################
 import dj_database_url
 DATABASES['default'] =  dj_database_url.config()
 
