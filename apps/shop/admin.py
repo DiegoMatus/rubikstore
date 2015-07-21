@@ -1,5 +1,5 @@
 from django.contrib import admin
-from rubikstore.apps.shop.models import *
+from apps.shop.models import *
 # Register your models here.
 
 admin.site.register(Category)

@@ -3,7 +3,7 @@ from django.db import models
 from random import randrange
 import datetime
 from django.utils.text import slugify
-from rubikstore import settings
+from django.conf import settings
 #sfrom accounts.models import Profile
 
 CHARSET = '0123456789'
