@@ -118,7 +118,7 @@ ALLOWED_HOSTS = ['*']
 #Allow CORS
 CORS_ORIGIN_ALLOW_ALL = True
 
-DEBUG = False
+#DEBUG = False
 
 try:
     from .local_settings import *
