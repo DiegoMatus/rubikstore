@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+import uuid
 from django.db import models
 from random import randrange
 import datetime
@@ -13,10 +14,13 @@ LENGTH_ORDER_CODE = 15
 MAX_TRIES = 1024
 
 
-class Category(models.Model):
+class BaseModel(models.Model):
+    uuid = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True)
+
+
+class Category(BaseModel):
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=40, unique=True, blank=True, null=True)
-    code = models.BigIntegerField(null=True, blank=True)
     description = models.TextField(null=True,blank=True)
     image = models.ImageField(upload_to='category/%Y%m%d', null=True, blank=True)
     is_active = models.BooleanField(default=True)
@@ -26,29 +30,11 @@ class Category(models.Model):
     def get_absolute_url(self):
         return "/category/%s/" % self.slug
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(unicode(self.name))
-        self.updated_at = datetime.datetime.now()
-        loop_num = 0
-        unique = False
-        while not unique:
-            if loop_num < MAX_TRIES:
-                new_code = ''
-                for i in xrange(LENGTH):
-                    new_code += CHARSET[randrange(0, len(CHARSET))]
-                if not Category.objects.filter(code=new_code):
-                    self.code = new_code
-                unique = True
-                loop_num += 1
-            else:
-                raise ValueError("Couldn't generate a unique code.")
-        super(Category, self).save(*args, **kwargs)
-
     def __unicode__(self):
         return self.name
 
-class Brand(models.Model):
+
+class Brand(BaseModel):
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=40, unique=True, blank=True, null=True)
     description = models.TextField(null=True, blank=True)
@@ -64,14 +50,15 @@ class Brand(models.Model):
         return self.name
 
 
-class Base(models.Model):
+class Base(BaseModel):
     name = models.CharField(max_length=200)
 
     def __unicode__(self):
         return self.name
 
 
-class Product(models.Model):
+class Product(BaseModel):
+    code = models.BigIntegerField()
     name = models.CharField(max_length=200)
     price = models.DecimalField(decimal_places=2, max_digits=10)
     slug = models.SlugField(max_length=40, unique=True, blank=True, null=True)
@@ -84,7 +71,6 @@ class Product(models.Model):
     description = models.TextField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
     description_full = models.TextField(blank=True, null=True)
-    code = models.BigIntegerField(null=True, blank=True)
     views = models.IntegerField(null=True, blank=True)
     TYPE_CHOICES = (
         (1,'Puzzle'),
@@ -95,36 +81,18 @@ class Product(models.Model):
     base = models.ManyToManyField(Base, blank=True)
     thumbnail = models.FileField(upload_to='thumbnails/%Y%m%d', null=True, blank=True)
     featured = models.BooleanField(default=False)
+
     def __unicode__(self):
         return self.name
 
     def get_thumbnail_url(self):
         return "{0}{1}".format(settings.MEDIA_ROOT, self.thumbnail.url)
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(unicode(self.name))
-        self.updated_at = datetime.datetime.now()
-        loop_num = 0
-        unique = False
-        while not unique:
-            if loop_num < MAX_TRIES:
-                new_code = ''
-                for i in xrange(LENGTH):
-                    new_code += CHARSET[randrange(0, len(CHARSET))]
-                if not Product.objects.filter(code=new_code):
-                    self.code = new_code
-                unique = True
-                loop_num += 1
-            else:
-                raise ValueError("Couldn't generate a unique code.")
-        super(Product, self).save(*args, **kwargs)
-
     def get_absolute_url(self):
         return "/product/%s/" % self.slug
 
 
-class Inventory(models.Model):
+class Inventory(BaseModel):
     volume = models.IntegerField()
     product = models.ForeignKey(Product, related_name='existence')
 
@@ -132,7 +100,7 @@ class Inventory(models.Model):
         return self.product.name + str(self.volume)
 
 
-class ImageProduct(models.Model):
+class ImageProduct(BaseModel):
     product = models.ForeignKey(Product, related_name='images')
     image = models.ImageField(upload_to='product/%Y%m%d')
 
@@ -140,14 +108,14 @@ class ImageProduct(models.Model):
         return self.product.name
 
 
-class Country(models.Model):
+class Country(BaseModel):
     name = models.CharField(max_length=200)
 
     def __unicode__(self):
         return self.name
 
 
-class State(models.Model):
+class State(BaseModel):
     name = models.CharField(max_length=300)
     country = models.ForeignKey(Country, related_name='states')
 
@@ -155,7 +123,7 @@ class State(models.Model):
         return self.name
 
 
-class City(models.Model):
+class City(BaseModel):
     name = models.CharField(max_length=300)
     state = models.ForeignKey(State, related_name='cities')
 
