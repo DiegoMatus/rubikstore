@@ -41,8 +41,8 @@
                         <ul>
                             <li><a href="#"><i class="fa fa-user"></i> Mi cuenta</a></li>
                             <li><a href="#"><i class="fa fa-heart"></i> Favoritos</a></li>
-                            <li><a href="cart.html"><i class="fa fa-user"></i> Carrito</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
+                            <li><a href={% url "shoppingcart" %}><i class="fa fa-user"></i> Carrito</a></li>
+                            <li><a href={% url "shipping" %}><i class="fa fa-user"></i> Checkout</a></li>
                             <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
                         </ul>
                     </div>
@@ -104,12 +104,11 @@
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Categorías</a></li>
-                        <li><a href="single-product.html">Detalle</a></li>
-                        <li><a href="cart.html">Carrito</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
-                        <li><a href="#">Contacto</a></li>
+                        <li class="active"><a href={% url "index" %}>Home</a></li>
+                        <li><a href={% url "brands" %}>Marcas</a></li>
+                        <li><a href={% url "types" %}>Tipos</a></li>
+                        <li><a href={% url "accessories" %}>Accesorios</a></li>
+                        <li><a href={% url "contact" %}>Contacto</a></li>
                     </ul>
                 </div>  
             </div>
@@ -124,7 +123,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
-                        <h2>r<span>Rubikstore</span></h2>
+                        <h2><span>Rubikstore</span></h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
