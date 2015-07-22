@@ -118,6 +118,10 @@ STATIC_ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__), '../stati
 STATIC_URL = '/static/'
 
 ############## Heroku's config. ##############################
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 import dj_database_url
 #DATABASES['default'] =  dj_database_url.config()
 
