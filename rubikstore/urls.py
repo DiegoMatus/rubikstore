@@ -20,4 +20,5 @@ admin.site.site_header = 'Rubikstore'
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('apps.shop.urls')),
+    url(r'^account/', include('apps.accounts.urls')),
 )

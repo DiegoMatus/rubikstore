@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ubd1+sd+q!54tavd7z3l)@ien^f6bobl!x^@-q+(rk6a)fg!9o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.shop',
+    'apps.accounts',
     'corsheaders',
 )
 
@@ -56,18 +57,28 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'rubikstore.urls'
 
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader'
-)
-
-TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
-                               "django.core.context_processors.debug",
-                               "django.core.context_processors.i18n",
-                               "django.core.context_processors.media",
-                               "django.core.context_processors.static",
-                               "django.contrib.messages.context_processors.messages",
-                               'django.core.context_processors.request',)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(os.path.dirname(__file__), 'templates'),
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
+                # list if you haven't customized them:
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 WSGI_APPLICATION = 'rubikstore.wsgi.application'
 

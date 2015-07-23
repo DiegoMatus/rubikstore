@@ -20,15 +20,3 @@ urlpatterns = patterns('apps.shop.views',
                        url(r'^checkout/shipping/$',				'shipping_view', 		name='shipping'),
                        url(r'^contact/$',						'contact_view', 		name='contact'),
                        )
-
-#urlpatterns = patterns('apps.accounts.views',
-#                       url(r'^$', 					'account_view', 		name="account"),
-#                       url(r'^login/$', 			'login_view', 			name="login"),
-#                       url(r'^register/$', 			'register_view', 		name="register"),
-#                       url(r'^wishlist/$', 			'wishlist_view', 		name="wishlist"),
-#                       url(r'^logout/$', 			'logout_view', 			name="logout"),
-#                       url(r'^forgot_password/$', 	'forgot_password_view', name="forgot_password"),
-#                       url(r'^edit/$', 				'edit_view', 			name="edit"),
-#                       url(r'^credit_cards/$', 		'credit_cards_view', 		name="credit_cards"),
-#                       url(r'^orders/$', 			'orders_view', 			name="orders"),
-#                       )
