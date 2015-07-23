@@ -19,6 +19,7 @@ from django.contrib import admin
 admin.site.site_header = 'Rubikstore'
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
+    #url(r'^account/', include('apps.accounts.urls')),
+    url(r'^accounts/', include('allauth.urls')),
     url(r'', include('apps.shop.urls')),
-    url(r'^account/', include('apps.accounts.urls')),
 )
