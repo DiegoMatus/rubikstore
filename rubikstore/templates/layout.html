@@ -39,11 +39,12 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li><a href="#"><i class="fa fa-user"></i> Mi cuenta</a></li>
-                            <li><a href="#"><i class="fa fa-heart"></i> Favoritos</a></li>
-                            <li><a href="cart.html"><i class="fa fa-user"></i> Carrito</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
-                            <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
+                            <li><a href={% url "index" %}><i class="fa fa-user"></i> Mi cuenta</a></li>
+                            <li><a href={% url "index" %}><i class="fa fa-heart"></i> Favoritos</a></li>
+                            <li><a href={% url "index" %}><i class="fa fa-shopping-cart"></i> Carrito</a></li>
+                            <li><a href={% url "index" %}><i class="fa fa-check"></i> Checkout</a></li>
+                            <li><a href={% url "index" %}><i class="fa fa-sign-in"></i> Login</a></li>
+                            <li><a href={% url "index" %}><i class="fa fa-user-plus"></i> Registro</a></li>
                         </ul>
                     </div>
                 </div>
@@ -78,13 +79,15 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="index.html"><span>Rubikstore</span></a></h1>
+                        <h1><a href={% url "index" %}>Rubikstore<span> Xalapa</span></a></h1>
                     </div>
                 </div>
                 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="cart.html">Carrito - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        {% block shoppingcart %}
+                            <a href={% url "shoppingcart" %}>Carrito - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        {% endblock %}
                     </div>
                 </div>
             </div>
@@ -104,12 +107,11 @@
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Categorías</a></li>
-                        <li><a href="single-product.html">Detalle</a></li>
-                        <li><a href="cart.html">Carrito</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
-                        <li><a href="#">Contacto</a></li>
+                        <li class="active"><a href={% url "index" %}>Inicio</a></li>
+                        <li><a href={% url "brands" %}>Marcas</a></li>
+                        <li><a href={% url "types" %}>Tipos</a></li>
+                        <li><a href={% url "accessories" %}>Accesorios</a></li>
+                        <li><a href={% url "contact" %}>Contacto</a></li>
                     </ul>
                 </div>  
             </div>
@@ -124,7 +126,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
-                        <h2>r<span>Rubikstore</span></h2>
+                        <h2>Rubikstore<span> Xalapa</span></h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
@@ -140,23 +142,24 @@
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Menú</h2>
                         <ul>
-                            <li><a href="#">Mi cuenta</a></li>
-                            <li><a href="#">Categorías</a></li>
-                            <li><a href="#">Detalle</a></li>
-                            <li><a href="#">Contacto</a></li>
+                            <li><a href={% url "index" %}>Mi cuenta</a></li>
+                            <li><a href={% url "shoppingcart" %}>Carrito</a></li>
+                            <li><a href={% url "shipping" %}>Checkout</a></li>
+                            <li><a href={% url "index" %}>Login</a></li>
+                            <li><a href={% url "index" %}>Register</a></li>
                         </ul>                        
                     </div>
                 </div>
                 
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-menu">
-                        <h2 class="footer-wid-title">Categorías</h2>
+                        <h2 class="footer-wid-title">Compras</h2>
                         <ul>
-                            <li><a href="#">lorem ipsum</a></li>
-                            <li><a href="#">lorem ipsum</a></li>
-                            <li><a href="#">lorem ipsum</a></li>
-                            <li><a href="#">lorem ipsum</a></li>
-                            <li><a href="#">lorem ipsum</a></li>
+                            <li><a href={% url "index" %}>Inicio</a></li>
+                            <li><a href={% url "brands" %}>Marcas</a></li>
+                            <li><a href={% url "types" %}>Tipos</a></li>
+                            <li><a href={% url "accessories" %}>Accesorios</a></li>
+                            <li><a href={% url "contact" %}>Contacto</a></li>
                         </ul>                        
                     </div>
                 </div>

@@ -192,26 +192,26 @@ z-index: 9;
   top: 0;
   width: 100%;
 }
-.slide-one {background-image: url(img/slide-1.jpg)}
-.slide-two {background-image: url(img/slide-2.jpg)}
-.slide-three {background-image: url(img/slide-3.jpg)}
+.slide-one {background-image: url(../img/slide-1.jpg)}
+.slide-two {background-image: url(../img/slide-2.jpg)}
+.slide-three {background-image: url(../img/slide-3.jpg)}
 .slide-text {color: #fff;font-size: 18px;font-weight: 200}
 .slide-text h2 {
   font-size: 45px;font-weight: 200
 }
 
-.slide-content {position: relative;z-index: 9;padding: 30px}
+/*.slide-content {position: relative;z-index: 9;padding: 30px}
 .slide-content:before {
   background: none repeat scroll 0 0 #000;
   content: "";
-  height: 100%;
+  height: 100%;c
   left: 0;
   opacity: 0.6;
   position: absolute;
   top: 0;
   width: 100%;
   z-index: -1;
-}
+}*/
 
 
 .readmore {
@@ -219,9 +219,9 @@ z-index: 9;
     color: #fff;
     border: 1px solid #1abc9c;
     display: inline-block;
-    font-size: 20px;
+    font-size: 18px;
     margin-top: 15px;
-    padding: 10px 20px;
+    padding: 9px 18px;
     text-transform: uppercase;
 }
 
@@ -560,7 +560,7 @@ width: 10px;
   margin: 10px 0 0;
 }
 
-.product-big-title-area {background: url(img/crossword.png) repeat scroll 0 0 #1ABC9C}
+.product-big-title-area {background: url(../img/crossword.png) repeat scroll 0 0 #1ABC9C}
 
 .product-bit-title h2 {
   font-family: raleway;
